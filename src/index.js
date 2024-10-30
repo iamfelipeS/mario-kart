@@ -50,7 +50,15 @@ async function playRaceEngine(character1, character2) {
         let block = await getRandomBlock();
         console.log(`🏁 Bloco sorteado: ${block}`);
         
-  
+        // Jogar dado (exemplo de uso do dado)
+        let diceRoll1 = await rollDice();
+        let diceRoll2 = await rollDice();
+        console.log(`${character1.name} rolou: ${diceRoll1}`);
+        console.log(`${character2.name} rolou: ${diceRoll2}`);
+        
+        // Lógica para determinar o vencedor do round pode ser adicionada aqui
+        
+        console.log(`-----`);
     }
 }
 
