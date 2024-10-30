@@ -113,5 +113,17 @@ async function playRaceEngine(character1, character2) {
     await playRaceEngine(player1, player2);
     await showWinner();
 })();
-
-
+// Função para mostrar o vencedor
+async function showWinner() {
+    if (player1.points > player2.points) {
+        console.log("||||||||||||||||||||||||||||||||||||")
+        console.log(`🏁🏁🏆 ${player1.name.toUpperCase()} VENCEU A CORRIDA! 🏆🏁🏁`);
+        console.log("||||||||||||||||||||||||||||||||||||")
+    } else if (player2.points > player1.points) {
+        console.log("||||||||||||||||||||||||||||||||||||")
+        console.log(`🏁🏁🏆 ${player2.name.toUpperCase()} VENCEU A CORRIDA! 🏆🏁🏁`);
+        console.log("||||||||||||||||||||||||||||||||||||")
+    } else {
+        console.log("🏁 Empate! 🏁");
+    }
+}
