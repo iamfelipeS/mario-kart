@@ -1,12 +1,11 @@
-
-
+let round = 1;
 const player1 = {
     name: "Mario",
     speed: 4,
     maneuverability: 3,
     power: 3,
     points: 0,
-}
+};
 
 const player2 = {
     name: "Luigi",
@@ -14,16 +13,48 @@ const player2 = {
     maneuverability: 4,
     power: 4,
     points: 0,
+};
+
+async function rollDice() {
+    return Math.floor(Math.random() * 6) + 1;
 }
 
-function rollDice() {
-    return Math.floor(Math.random() * 6) + 1
+async function getRandomBlock() {
+    let random = Math.random();
+    let result;
+    
+    // Verifica se o round atual é o primeiro
+    if (round === 1) {
+        result = "RETA";
+    } else {
+        // A partir do segundo round, sorteia aleatoriamente o bloco
+        switch (true) {
+            case random <= 0.33:
+                result = "RETA";
+                break;
+            case random <= 0.66:
+                result = "CURVA DIREITA";
+                break;
+            default:
+                result = "CONFRONTO";
+        }
+    }
+    return result;
 }
 
-(async function startMessage(){
-    console.log(`🏁🚨 Iniciando a corrida entre \n ${player1.name} e ${player2.name} começando...`)
-})()
+async function playRaceEngine(character1, character2) {
+    for (round = 1; round <= 5; round++) {
+        console.log(`🏁 Rodada ${round}`);
+        
+        // Sortear bloco
+        let block = await getRandomBlock();
+        console.log(`🏁 Bloco sorteado: ${block}`);
+        
+  
+    }
+}
 
-
-console.log(rollDice())
-
+(async function main() {
+    console.log(`🏁🚨 Iniciando a corrida entre ${player1.name} e ${player2.name} começando...`);
+    await playRaceEngine(player1, player2);
+})();
