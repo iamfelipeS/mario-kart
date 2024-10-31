@@ -1,24 +1,49 @@
+import characters from './characters.js';
+
 let round = 1;
-const player1 = {
-    name: "Mario",
-    speed: 4,
-    maneuverability: 3,
-    power: 3,
-    points: 0,
-};
 
-const player2 = {
-    name: "Luigi",
-    speed: 3,
-    maneuverability: 4,
-    power: 4,
-    points: 0,
-};
+//Função selecionar personagem para os Players
+async function selectCharacter() {
+    // Escolha do personagem para o Player 1
+    console.log("\n📢 Escolha um personagem para o Player 1: ");
+    const player1Character = await askForCharacter("Player 1");
 
+    // Escolha do personagem para o Player 2
+    console.log("\n📢 Escolha um personagem para o Player 2: ");
+    const player2Character = await askForCharacter("Player 2");
+
+    return [player1Character, player2Character];
+
+    function askForCharacter(player) {
+        // Mostrar no console as opções de personagens
+        console.log("Escolha pelo código do personagem:");
+        characters.forEach(character => {
+            console.log(`${character.code} - ${character.name}`);
+        });
+
+        // Pausar a execução da função para entrada do usuário
+        return new Promise((resolve) => {
+            // Coletar o código digitado pelo usuário
+            process.stdin.once('data', (data) => {
+                const code = data.toString().trim();
+                const character = characters.find(c => c.code === parseInt(code));
+                if (character) {
+                    console.log(`\n${player} escolheu ${character.name}!\n`);
+                    resolve(character);
+                } else {
+                    console.log('Opção inválida. Tente novamente.');
+                    resolve(askForCharacter(player)); // Reexecuta a função em caso de entrada inválida
+                }
+            });
+        });
+    }
+}
+
+// Função para retornar um dado de 6 lados
 async function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
 }
-
+// Função para retornar um bloco da pista aleatóriamente
 async function getRandomBlock() {
     let random = Math.random();
     let result;
@@ -50,7 +75,7 @@ async function logRollResult(character1, character2, diceRoll1, diceRoll2, skill
 // Função para executar a corrida
 async function playRaceEngine(character1, character2) {
     for (round = 1; round <= 5; round++) {
-        console.log(`🏁 Rodada ${round}`);
+        console.log(`📢 Rodada ${round}`);
 
         let block = await getRandomBlock();
         console.log(`🏁 Bloco sorteado: ${block}`);
@@ -91,30 +116,28 @@ async function playRaceEngine(character1, character2) {
             } else if (totalTestSkill2 > totalTestSkill1) {
                 character2.points += 1;
                 console.log(`${character2.name} ganha 1 ponto!`);
-            } else if (totalTestSkill1 === totalTestSkill2) {
-                console.log("Empate! Nenhum ponto atribuído.");
             } else {
-                if (totalTestSkill1 > totalTestSkill2) {
-                    character1.points += 1;
-                    console.log(`${character1.name} ganha 1 ponto!`);
-                } else if (totalTestSkill2 > totalTestSkill1) {
-                    character2.points += 1;
-                    console.log(`${character2.name} ganha 1 ponto!`);
-                }
+                console.log("Empate! Nenhum ponto ganho.");
+            }
+        } else if (block === "CONFRONTO") {
+            if (totalTestSkill1 > totalTestSkill2 && character2.points > 0) {
+                character2.points -= 1;
+                console.log(`${character2.name} perdeu 1 ponto!`);
+            } else if (totalTestSkill2 > totalTestSkill1 && character1.points > 0) {
+                character1.points -= 1;
+                console.log(`${character1.name} perdeu 1 ponto!`);
+            } else if (character1.points === 0 && character2.points === 0) {
+                console.log("O jogador não tem pontos para perder.");
+            } else {
+                console.log("Empate no confronto! Nenhum ponto perdido.");
             }
         }
 
         console.log(`------------------> ${character1.name.toUpperCase()} (${character1.points}) vs (${character2.points}) ${character2.name.toUpperCase()} <------------------\n`);
     }
 }
-
-(async function main() {
-    console.log(`🏁🚨 Iniciando a corrida entre ${player1.name} e ${player2.name}...\n`);
-    await playRaceEngine(player1, player2);
-    await showWinner();
-})();
 // Função para mostrar o vencedor
-async function showWinner() {
+async function showWinner(player1, player2) {
     if (player1.points > player2.points) {
         console.log("||||||||||||||||||||||||||||||||||||")
         console.log(`🏁🏁🏆 ${player1.name.toUpperCase()} VENCEU A CORRIDA! 🏆🏁🏁`);
@@ -127,3 +150,13 @@ async function showWinner() {
         console.log("🏁 Empate! 🏁");
     }
 }
+// Inicia a corrida
+(async function main() {
+    const [player1, player2] = await selectCharacter();
+    console.log(`🏁🚨 Iniciando a corrida entre ${player1.name} e ${player2.name}...\n`);
+    await playRaceEngine(player1, player2);
+    await showWinner(player1, player2);
+
+    process.exit();
+})();
+
