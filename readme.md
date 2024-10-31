@@ -13,7 +13,7 @@
     </table>
 
 <h2>Players</h2>
-      <table style="border-collapse: collapse; width: 800px; margin: 0 auto;">
+    <table style="border-collapse: collapse; width: 800px; margin: 0 auto;">
         <tr>
             <td style="border: 1px solid black; text-align: center;">
                 <p>Mario</p>
@@ -24,7 +24,7 @@
                 <p>Manobrabilidade: 3</p>
                 <p>Poder: 3</p>
             </td>
-             <td style="border: 1px solid black; text-align: center;">
+            <td style="border: 1px solid black; text-align: center;">
                 <p>Peach</p>
                 <img src="./docs/peach.gif" alt="Mario Kart" width="60" height="60">
             </td>
@@ -33,7 +33,7 @@
                 <p>Manobrabilidade: 4</p>
                 <p>Poder: 2</p>
             </td>
-              <td style="border: 1px solid black; text-align: center;">
+            <td style="border: 1px solid black; text-align: center;">
                 <p>Yoshi</p>
                 <img src="./docs/yoshi.gif" alt="Mario Kart" width="60" height="60">
             </td>
@@ -73,31 +73,40 @@
             </td>
         </tr>
     </table>
-
 <p></p>
 
 <h3>🕹️ Regras & mecânicas:</h3>
 
 <b>Jogadores:</b>
 
-<input type="checkbox" id="jogadores-item" />
-<label for="jogadores-item">O Computador deve receber dois personagens para disputar a corrida em um objeto cada</label>
+<label for="jogadores-item">Primeiro é feita a escolha do personagem para o Player 1 e Player 2.</label>
 
 <b>Pistas:</b>
+<li><label for="pistas-1-item">Os personagens irão correr em uma pista aleatória de 5 rodadas.</label></li>
+<li><label for="pistas-2-item">A cada rodada, será sorteado um bloco da pista que pode ser uma reta, curva ou confronto.</label></li>
+</br>
+<b>Mecânica:</b>
 
 <ul>
-  <li><input type="checkbox" id="pistas-1-item" /> <label for="pistas-1-item">Os personagens irão correr em uma pista aleatória de 5 rodadas</label></li>
-  <li><input type="checkbox" id="pistas-2-item" /> <label for="pistas-2-item">A cada rodada, será sorteado um bloco da pista que pode ser uma reta, curva ou confronto</label>
+  <li>Início da corrida com um bloco de RETA para evitar confronto logo na primeira rodada, onde nenhum ponto é concedido aos players.</li>
+  </br>
+  <li>
+    Caso o bloco da pista seja uma RETA, o jogador deve jogar um dado de 6 lados e somar o atributo VELOCIDADE, quem vencer ganha um ponto
+  </li>
+  <li>
+    Caso o bloco da pista seja uma CURVA, o jogador deve jogar um dado de 6 lados e somar o atributo MANOBRABILIDADE, quem vencer ganha um ponto
+  </li>
+  
+  <li>Caso o bloco da pista seja um CONFRONTO  (Será gerado itens aleatórios: casco, bomba e estrela).
     <ul>
-      <li><input type="checkbox" id="pistas-2-1-item" /> <label for="pistas-2-1-item">Caso o bloco da pista seja uma RETA, o jogador deve jogar um dado de 6 lados e somar o atributo VELOCIDADE, quem vencer ganha um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-2-item" /> <label for="pistas-2-2-item">Caso o bloco da pista seja uma CURVA, o jogador deve jogar um dado de 6 lados e somar o atributo MANOBRABILIDADE, quem vencer ganha um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Caso o bloco da pista seja um CONFRONTO, o jogador deve jogar um dado de 6 lados e somar o atributo PODER, quem perder, perde um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Nenhum jogador pode ter pontuação negativa (valores abaixo de 0)</label></li>
+      <li><strong>CASCO</strong> - Adiciona 1 ponto de força para o personagem; o vencedor ganha 2 pontos, e o perdedor perde até 2 pontos.</li>
+      <li><strong>BOMBA</strong> - Adiciona 2 pontos de força para o personagem; o vencedor ganha 3 pontos, e o perdedor perde até 3 pontos.</li>
+      <li><strong>ESTRELA</strong> - O personagem com a estrela vence automaticamente o confronto; o vencedor ganha até 5 pontos, e o perdedor perde até 5 pontos.</li>
     </ul>
   </li>
 </ul>
 
+
 <b>Condição de vitória:</b>
 
-<input type="checkbox" id="vitoria-item" />
 <label for="vitoria-item">Ao final, vence quem acumulou mais pontos</label>
