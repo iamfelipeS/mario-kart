@@ -54,8 +54,8 @@ async function logRollResult(character1, character2, diceRoll1, diceRoll2, skill
     const skillIcons = { "Velocidade": "⚡", "Manobrabilidade": "🔄", "Força": "💪" };
 
     if (skillType === "Força") {
-        console.log(`${character1.name} (${skillIcons[skillType]} ${skillValue1} + ${randomPower1.value}) ${powerIcons[randomPower1.name]} Total: ${totalTestSkill1}`);
-        console.log(`${character2.name} (${skillIcons[skillType]} ${skillValue2} + ${randomPower2.value}) ${powerIcons[randomPower2.name]} Total: ${totalTestSkill2}\n`);
+        console.log(`${character1.name} ${skillIcons[skillType]} ${skillValue1} + ${randomPower1.value} ${powerIcons[randomPower1.name]} - Total: ${totalTestSkill1}`);
+        console.log(`${character2.name} ${skillIcons[skillType]} ${skillValue2} + ${randomPower2.value} ${powerIcons[randomPower2.name]} - Total: ${totalTestSkill2}\n`);
     } else {
         console.log(`${character1.name} 🎲 ${diceRoll1} + ${skillValue1} ${skillIcons[skillType]} ${skillType} = ${totalTestSkill1}`);
         console.log(`${character2.name} 🎲 ${diceRoll2} + ${skillValue2} ${skillIcons[skillType]} ${skillType} = ${totalTestSkill2}\n`);
@@ -124,14 +124,20 @@ async function playRaceEngine(character1, character2) {
                 console.log("Empate! Nenhum ponto ganho.");
             }
         } else if (block === "CONFRONTO") {
-            if (totalTestSkill1 > totalTestSkill2 && character2.points > 0) {
-                character2.points -= 1;
-                console.log(`${character2.name} perdeu 1 ponto!`);
-            } else if (totalTestSkill2 > totalTestSkill1 && character1.points > 0) {
-                character1.points -= 1;
-                console.log(`${character1.name} perdeu 1 ponto!`);
-            } else if (character1.points === 0 && character2.points === 0) {
-                console.log("O jogador não tem pontos para perder.");
+            if (totalTestSkill1 > totalTestSkill2) {
+                if (character2.points > 0) {
+                    character2.points -= 1;
+                    console.log(`${character2.name} perdeu 1 ponto!`);
+                } else {
+                    console.log(`${character2.name} não tem pontos para perder.`);
+                }
+            } else if (totalTestSkill2 > totalTestSkill1) {
+                if (character1.points > 0) {
+                    character1.points -= 1;
+                    console.log(`${character1.name} perdeu 1 ponto!`);
+                } else {
+                    console.log(`${character1.name} não tem pontos para perder.`);
+                }
             } else {
                 console.log("Empate no confronto! Nenhum ponto perdido.");
             }
