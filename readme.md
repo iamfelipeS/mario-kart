@@ -86,7 +86,7 @@
 <li><label for="pistas-2-item">A cada rodada, será sorteado um bloco da pista que pode ser uma reta, curva ou confronto.</label></li>
 </br>
 <b>Mecânica:</b>
-
+</br>
 <ul>
   <li>Início da corrida com um bloco de RETA para evitar confronto logo na primeira rodada, onde nenhum ponto é concedido aos players.</li>
   </br>
@@ -97,7 +97,7 @@
     Caso o bloco da pista seja uma CURVA, o jogador deve jogar um dado de 6 lados e somar o atributo MANOBRABILIDADE, quem vencer ganha um ponto
   </li>
   
-  <li>Caso o bloco da pista seja um CONFRONTO  (Será gerado itens aleatórios: casco, bomba e estrela).
+  <li>Caso o bloco da pista seja um CONFRONTO  (Será gerado itens aleatórios: casco, bomba e estrela) com soma do valor da força + item aleatorio. O perdedor do confronto, perde 1 ponto no placar.
     <ul>
       <li><strong>CASCO</strong> - Adiciona 1 ponto extra de força para o personagem;</li>
       <li><strong>BOMBA</strong> - Adiciona 2 pontos extra de força para o personagem;</li>
