@@ -99,9 +99,9 @@
   
   <li>Caso o bloco da pista seja um CONFRONTO  (Será gerado itens aleatórios: casco, bomba e estrela).
     <ul>
-      <li><strong>CASCO</strong> - Adiciona 1 ponto de força para o personagem; o vencedor ganha 2 pontos, e o perdedor perde até 2 pontos.</li>
-      <li><strong>BOMBA</strong> - Adiciona 2 pontos de força para o personagem; o vencedor ganha 3 pontos, e o perdedor perde até 3 pontos.</li>
-      <li><strong>ESTRELA</strong> - O personagem com a estrela vence automaticamente o confronto; o vencedor ganha até 5 pontos, e o perdedor perde até 5 pontos.</li>
+      <li><strong>CASCO</strong> - Adiciona 1 ponto extra de força para o personagem;</li>
+      <li><strong>BOMBA</strong> - Adiciona 2 pontos extra de força para o personagem;</li>
+      <li><strong>ESTRELA</strong>- Adiciona 4 pontos extra de força para o personagem;</li>
     </ul>
   </li>
 </ul>
