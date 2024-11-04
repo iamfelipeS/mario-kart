@@ -1,7 +1,7 @@
 {
   "name": "mario-kart",
   "version": "1.0.0",
-  "description": "<!--START_SECTION:header--> <div align=\"center\">   <p align=\"center\">     <img        alt=\"DIO Education\"        src=\"./.github/assets/logo.webp\"        width=\"100px\"      />     <h1>Formação: NodeJS Developer</h1>   </p> </div> <!--END_SECTION:header-->",
+  "description": "Mario Kart JS",
   "main": "index.js",
   "directories": {
     "doc": "docs"

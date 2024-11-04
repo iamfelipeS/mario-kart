@@ -18,9 +18,9 @@ async function selectCharacter() {
     function askForCharacter(player) {
         // Mostrar no console as opções de personagens
         console.log("Escolha pelo código do personagem:");
-        characters.forEach(character => {
+        for (const character of characters) {
             console.log(`${character.code} - ${character.name}`);
-        });
+        };
 
         // Pausar a execução da função para entrada do usuário
         return new Promise((resolve) => {
